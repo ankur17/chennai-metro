@@ -1,4 +1,40 @@
 .App {
   text-align: center;
+    --left-panel-width : 30%
 }
 
+.rightBar{
+    position: absolute;
+    top : 0;
+    left : var(--left-panel-width);
+    width : calc(100% - var(--left-panel-width ));
+    height : 100%;
+    background-color: chocolate;
+}
+
+
+
+.lefttBar{
+    position: absolute;
+    top:0;
+    left:0;
+    width: var(--left-panel-width);
+    height: 100%;
+    background-color: aqua;
+}
+
+
+.card {
+    background-color: crimson;
+    position: relative;
+    top : 10%;
+    left: 10%;
+    width: 40%;
+    height: 40%;
+    border-radius: 5px;
+    transform: rotate(20deg);
+}
+
+.highLight {
+    border-radius: 10px;
+}
