@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Card from './Card'
  class RightPanel extends Component {
 
     constructor(props) {
@@ -7,11 +8,42 @@ import React, {Component} from 'react';
     }
 
     render() {
+        let default_s = {
+            backgroundColor: "crimson",
+            position: "relative",
+            width: "25%",
+            height: "25%",
+            borderRadius: "5px"
+        }
         return (
             <div className="rightBar">
-                <div className="card">
+                <Card style={{
+                    ...default_s,
+                    top : 0,
+                    left : "0%"
+                }}/>
 
-                </div>
+
+                <Card style={{
+                    ...default_s,
+                    top : "0%",
+                    left : "25%"
+                }}/>
+
+
+                <Card style={{
+                    ...default_s,
+                    top : "60%",
+                    left : "60%"
+                }}/>
+
+
+                <Card style={{
+                    ...default_s,
+                    top : "90%",
+                    left : "90%"
+                }}/>
+
             </div>
         )
     }

@@ -29,8 +29,8 @@
     position: relative;
     top : 10%;
     left: 10%;
-    width: 40%;
-    height: 40%;
+    width: 25%;
+    height: 25%;
     border-radius: 5px;
     transform: rotate(20deg);
 }
