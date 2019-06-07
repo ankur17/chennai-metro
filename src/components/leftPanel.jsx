@@ -12,7 +12,7 @@ class LeftPanel extends Component {
 
     render() {
         return (
-            <div className="lefttBar">
+            <div className="leftBar">
                 <input type="text" name="firstname" value ="John"/>
                 <button type="button" onClick={this.onClick}>Search</button>
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import station from './../helper/constants'
+import stationDetails from './../helper/constants'
 
 class Card extends Component {
     constructor(props) {
@@ -9,8 +9,8 @@ class Card extends Component {
 
     render() {
         return (
-            <div className="box"  style={{...this.props.style}}>
-
+            <div className="card"  style={{...this.props.style}}>
+                {this.props.text? this.props.text : ""}
             </div>
         )
     }
