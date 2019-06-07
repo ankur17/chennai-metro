@@ -1,14 +1,27 @@
 .App {
-    --left-panel-width : 300px;
+    display: flex;
+    --left-panel-width : 316px;
 
+}
+
+
+.Heading {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: "Courier New";
+}
+.HeadingDiv{
+    text-align: center;
+    width: 100%;
+    background-color: yellow;
 }
 
 .rightBar{
     position: absolute;
-    top : 0;
+    top : 10%;
     left : var(--left-panel-width);
     width : 1050px;
-    height : 100%;
+    height : 90%;
     background-color: chocolate;
     text-align: center;
     /*min-width: 720px;*/
@@ -18,12 +31,33 @@
 
 .leftBar{
     position: absolute;
-    top:0;
+    top:10%;
     left:0;
     width: var(--left-panel-width);
-    height: 100%;
+    height: 90%;
     background-color: aqua;
+    padding-left: 10px;
+    padding-right: 20px;
+    align-items: center;
+
 }
+
+.searchBar{
+    position: relative;
+    top:40%;
+    height : 10%;
+    width: 80%;
+    padding-left: 2%;
+    font-size: medium;
+}
+
+.SearchButton {
+    position: relative;
+    height : 7%;
+    top:43%;
+    width: 83%;
+}
+
 
 
 .card {
@@ -34,6 +68,13 @@
     borderRadius: 5px;
     z-index: 2;
     transform: translate(-50%,-50%);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card:hover {
+    opacity: #650b0a;
+
 }
 
 .highLight {
@@ -84,6 +125,11 @@
     pointer-events: none;
 }
 
+.Modal:after{
+    top:60px;
+    transition: 0.3s;
+}
+
 .modalCard {
     position: relative;
     opacity: 1;
@@ -93,7 +139,7 @@
     left: 50%;
     z-index: 16;
     transform: translate(-50%,-50%);
-    background-color: antiquewhite;
+    background-color: #b0fff1;
     border-radius: 10px;
     padding: 10px;
     transition: opacity 5s;
@@ -139,6 +185,17 @@
     font-size: 16px;
     line-height: 22px;
     overflow: visible;
+    text-align: left;
+}
+.modalClose {
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 4px 2px;
+    width: 20%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 

@@ -28,7 +28,7 @@ class Modal extends Component {
 
                     </div>
                     <div className="modalFooter">
-                        <button type="button" onClick={()=> {console.log("KMM"); this.props.modalHide()}}>Close</button>
+                        <button className="modalClose" onClick={()=> {console.log("KMM"); this.props.modalHide()}}>Close</button>
                     </div>
                 </div>
             </div>

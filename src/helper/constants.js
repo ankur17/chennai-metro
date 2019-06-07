@@ -53,7 +53,7 @@ export const cardPos = {
     "Sa": {top: "350px", left: "600px", key: "Sa", text: "Sa"},
     "Mu": {top: "130px", left: "520px", key: "Mu", text: "Mu"},
     "Ma": {top: "125px", left: "200px", key: "Ma", text: "Ma"},
-    "Ex": {top: "580px", left: "200px", key: "Ex", text: "Ex"},
+    "Ex": {top: "480px", left: "200px", key: "Ex", text: "Ex"},
     "Ce": {top: "50px", left: "700px", key: "Ce", text: "Ce"}
 }
 
