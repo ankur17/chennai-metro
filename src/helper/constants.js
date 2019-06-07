@@ -42,3 +42,19 @@ export const stationDetails = {
         adjacent : [{name : "Government Museum",distance:12},{name : "Marina",distance:14},{name : "Sathyam Cinemas",distance:14},{name : "Music Academy",distance:4}]
     }
 }
+
+
+
+export const cardPos = [
+    {top : "250px", left : "400px",text:"US"},
+    {top : "250px", left : "800px",text:"Go"},
+    {top : "450px", left : "800px",text:"MA"},
+    {top : "450px", left : "400px",text:"Co"},
+    {top : "350px", left : "600px",text:"Sa"},
+    {top : "130px", left : "520px",text:"Mu"},
+    {top : "580px", left : "650px",text:"Ma"},
+    {top : "580px", left : "200px",text:"Ex"},
+    {top : "50px", left : "700px",text:"Ce"}
+]
+
+

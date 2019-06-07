@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Card from './Card'
+import {cardPos} from './../helper/constants'
  class RightPanel extends Component {
 
     constructor(props) {
@@ -23,7 +24,9 @@ import Card from './Card'
     }
     render() {
         // var ctrans = 'translate('+cleft+'px, '+ctop+'px)';
-        let default_s = {
+
+        let view_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const stt = {
             backgroundColor: "crimson",
             position: "absolute",
             width: "60px",
@@ -31,74 +34,26 @@ import Card from './Card'
             borderRadius: "5px",
 
         }
-
-
-        let view_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const cartDesignRender = ()=>{
+            let design = []
+            for(let each of cardPos){
+                design.push(
+                    <Card style={{
+                        ...stt,
+                            top : each.top,
+                            left : each.left}}
+                          text={each.text}
+                          key ={"key_"+each.text}
+                    />
+                )
+            }
+            return design
+        }
 
         return (
             <div className="rightBar">
 
-                <Card style={{
-                    ...default_s,
-                    top : "250px",
-                    left : "400px"
-                }}text="US" onClick={this.click.bind(this)}/>
-
-
-                <Card style={{
-                    ...default_s,
-                    top : "250px",
-                    left : "800px"
-                }} text="Go"/>
-
-
-                <Card style={{
-                    ...default_s,
-                    top : "450px",
-                    left: "800px"
-                }} text="MA"/>
-
-                <Card style={{
-                    ...default_s,
-                    top : "450px",
-                    left : "400px"
-                }} text="Co"/>
-
-                <Card style={{
-                    ...default_s,
-                    top : "350px",
-                    left : "600px"
-                }} text="Sa"/>
-
-
-                <Card style={{
-                    ...default_s,
-                    top : "130px",
-                    left : "520px"
-                }} text="Mu"/>
-
-
-                <Card style={{
-                    ...default_s,
-                    top : "580px",
-                    left : "650px"
-                }} text="Ma"/>
-
-
-                <Card style={{
-                    ...default_s,
-                    top : "580px",
-                    left : "200px"
-                }} text="Ex"/>
-
-
-                <Card style={{
-                    ...default_s,
-                    top : "50px",
-                    left : "700px"
-                }}  ref={(ref)=>{this.reff = ref}}
-                      text="Ce"/>
-
+                {cartDesignRender()}
 
 
                 <div className="line" style={{
