@@ -5,12 +5,20 @@ class Card extends Component {
     constructor(props) {
         super(props)
         this.state = {}
+        this.clicked = this.clicked.bind(this)
     }
+
+
+    clicked(){
+        this.props.onClick(this.props.cardKey)
+    }
+
+
 
     render() {
         return (
-            <div className="card"  style={{...this.props.style}}>
-                {this.props.text? this.props.text : ""}
+            <div className="card" onClick={this.clicked}  style={{...this.props.style}} onselectstart="return false"  unselectable="on">
+                <p> {this.props.text? this.props.text : ""}</p>
             </div>
         )
     }

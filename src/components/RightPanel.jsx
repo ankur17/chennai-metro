@@ -2,22 +2,39 @@ import React, {Component} from 'react';
 import Card from './Card'
 import {cardPos,roadmap} from './../helper/constants'
 import {slope,pointsDistance,removePX} from './../helper/utils'
- class RightPanel extends Component {
+import Modal from './Modal'
+
+
+class RightPanel extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {}
-        this.reff = {}
+        this.state = {
+            showModal : false,
+            modalDataKey: ""
+        }
+
+        this.click =  this.click.bind(this)
+        this.modalHide =  this.modalHide.bind(this)
     }
 
-    click(){
-        console.log(this.reff)
+    click(card_key){
+
+        if(!this.state.showModal){
+            this.setState({
+                modalDataKey: card_key,
+                showModal:true
+            })
+        }
+
     }
 
-    componentWillMount(){
-        this.timmer = setInterval(()=>{
-            console.log(this.reff)
-        },2000)
+    modalHide(){
+        console.log("CLOSING")
+        this.setState({
+            showModal : false,
+            modalDataKey: ""
+        })
     }
 
     componentWillUnmount(){
@@ -27,7 +44,7 @@ import {slope,pointsDistance,removePX} from './../helper/utils'
         // var ctrans = 'translate('+cleft+'px, '+ctop+'px)';
 
         let view_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        const stt = {
+        const styles = {
             backgroundColor: "crimson",
             position: "absolute",
             width: "60px",
@@ -41,11 +58,14 @@ import {slope,pointsDistance,removePX} from './../helper/utils'
             for(let each of cardPosList){
                 design.push(
                     <Card style={{
-                        ...stt,
+                            ...styles,
                             top : each.top,
                             left : each.left}}
+                          onClick={this.click}
                           text={each.text}
-                          key ={"key_"+each.text}
+                          key ={"key_"+each.key}
+                          cardKey = {each.key}
+
                     />
                 )
             }
@@ -68,7 +88,6 @@ import {slope,pointsDistance,removePX} from './../helper/utils'
                 let calculated_slope = slope(p1_left,p1_top,p2_left,p2_top)
                 key_increment += 321
 
-                console.log("Check",each,point1,point2,calculated_width)
                 road.push(
                     <div className="line" key={"road_"+key_increment} style={{
                         width: `${calculated_width}px`,
@@ -88,6 +107,8 @@ import {slope,pointsDistance,removePX} from './../helper/utils'
 
 
                 {straightRoadGenerator()}
+
+                {this.state.showModal ? <Modal modalHide={this.modalHide} modalDataKey={this.state.modalDataKey} /> : null}
 
 
 
