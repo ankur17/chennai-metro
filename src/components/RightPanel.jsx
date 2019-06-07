@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Card from './Card'
-import {cardPos,roadmap} from './../helper/constants'
-import {slope,pointsDistance,removePX} from './../helper/utils'
+import {cardPos,roadmap,nodes,edges} from './../helper/constants'
+import {slope,pointsDistance,removePX,kruskal} from './../helper/utils'
 import Modal from './Modal'
 
 
@@ -17,7 +17,7 @@ const DEFAULT_CLASS = {
 
 const HIGHLIGHT = {
     EDGE : 'highLight',
-    NODE : 'nodeHighLight'
+    NODE : 'highLight'
 }
 
 
@@ -33,6 +33,7 @@ class RightPanel extends Component {
         this.click =  this.click.bind(this)
         this.modalHide =  this.modalHide.bind(this)
         this.classNameResolver =  this.classNameResolver.bind(this)
+        this.optimiseIt =  this.optimiseIt.bind(this)
     }
 
     click(card_key){
@@ -60,21 +61,31 @@ class RightPanel extends Component {
 
     classNameResolver(default_class,type, data){
         let searchResult = this.props.searchResult || "";
-        if(searchResult.length>0){
+        if(searchResult.length>0 ){
             switch(type) {
                 case TYPE.EDGE:
                     // here key1 and key2 is in the data
                     let key1 = data[0]
                     let key2 = data[1]
-
-                    console.log("HMMM",key1,key2,searchResult)
-                    if( (searchResult==key1) || (searchResult==key2) ){
-                        return `${default_class} ${HIGHLIGHT.EDGE}`
+                    let mst = this.state.mst.slice(0)
+                    for(let each of mst){
+                        let res1 =each[0]
+                        let res2 = each[1]
+                        console.log(each,key1,key2)
+                        if( ((res1==key1)&&(res2==key2)) || ((res1==key2) && (res2==key2)) ){
+                            console.log("WORKIT")
+                            return `${default_class} ${HIGHLIGHT.EDGE}`
+                        }
                     }
+
+
+                    // if( (searchResult==key1) || (searchResult==key2) ){
+                    //     return `${default_class} ${HIGHLIGHT.EDGE}`
+                    // }
                         break;
                 case TYPE.NODE:
-                    // here only key is in data
-                    if (searchResult==data){
+                    // here key is in data
+                    if ( (searchResult.length>0) && (searchResult==data.key)){
                         return `${default_class} ${HIGHLIGHT.NODE}`
                     }
                     break;
@@ -85,29 +96,34 @@ class RightPanel extends Component {
 
     }
 
+    optimiseIt(){
+        // let index = nodes.find(function(element) {
+        //     return element == this.props.searchResult ;
+        // });
+
+        let mst = kruskal(nodes,edges)
+
+        console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",mst)
+
+        this.setState({
+            mst : mst
+        })
+
+    }
+
     render() {
         // var ctrans = 'translate('+cleft+'px, '+ctop+'px)';
 
         let view_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        const styles = {
-            backgroundColor: "crimson",
-            position: "absolute",
-            width: "60px",
-            height: "40px",
-            borderRadius: "5px",
 
-        }
         const cartDesignRender = ()=>{
             let design = []
             let cardPosList = Object.values(cardPos)
             for(let each of cardPosList){
                 let class_name = this.classNameResolver(DEFAULT_CLASS.NODE,TYPE.NODE,each)
-                if(class_name!=DEFAULT_CLASS.NODE){
-                    console.log("POPOPOPOPOPOPOPOP",DEFAULT_CLASS.NODE,TYPE.NODE,each)
-                }
+
                 design.push(
                     <Card style={{
-                            ...styles,
                             top : each.top,
                             left : each.left}}
                           onClick={this.click}
@@ -138,9 +154,8 @@ class RightPanel extends Component {
                 key_increment += 321
 
                 let class_name = this.classNameResolver(DEFAULT_CLASS.EDGE,TYPE.EDGE,each)
-
-                // if(class_name==DEFAULT_CLASS.EDGE){
-                //     console.log("JOJOJOJOJOJOJOJOJ",DEFAULT_CLASS.NODE,TYPE.NODE,each)
+                // if(class_name.split(" ").length){
+                //     console.log("HMM","render",class_name,each)
                 // }
 
                 road.push(
@@ -164,6 +179,8 @@ class RightPanel extends Component {
                 {straightRoadGenerator()}
 
                 {this.state.showModal ? <Modal modalHide={this.modalHide} modalDataKey={this.state.modalDataKey} /> : null}
+
+                <button onClick={this.optimiseIt}>Optimise It</button>
 
 
 

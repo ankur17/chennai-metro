@@ -16,8 +16,16 @@ class Card extends Component {
 
 
     render() {
+
+            console.log("JJJJJ",this.props.class_name)
+
         return (
-            <div className="card" onClick={this.clicked}  style={{...this.props.style}} onselectstart="return false"  unselectable="on">
+            <div
+                className={this.props.class_name}
+                onClick={this.clicked}
+                style={{...this.props.style}}
+                onselectstart="return false"
+                unselectable="on">
                 <p> {this.props.text? this.props.text : ""}</p>
             </div>
         )

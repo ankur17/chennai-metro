@@ -37,7 +37,6 @@ class LeftPanel extends Component {
 
     clearOption(){
         this.setState({
-            search_selection : "",
             isFinalised : false
         // },()=>this.props.setSearchResult(""))
 

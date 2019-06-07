@@ -17,6 +17,35 @@ export const keyMapper = {
     "MA Chidambaram Stadium":"MA"
 }
 
+
+export const nodes = ["Co",
+    "US",
+    "Mu",
+    "Ma",
+    "Ex",
+    "Ce",
+    "Go",
+    "Sa",
+    "MA"]
+
+
+export const edges = [
+    ["Co","US" ,8]
+    ,["Co","Sa",16]
+    , ["US","Sa",22]
+    ,["Sa","MA",14]
+    ,["US","Mu",16]
+    ,["Sa","Go",2]
+    , ["Mu","MA",4]
+    , ["Go","MA",12]
+    ,["Mu","Ce",8,]
+    , ["Go","Ce",4]
+    , ["Mu","Ma",14]
+    ,["Ma","Ce",28]
+    ,["Ma","Ex",18]
+    , ["Ce","Ex",20]
+]
+
 export const stationDetails = {
     Co : {
         name : "Commutatus",
@@ -54,6 +83,19 @@ export const stationDetails = {
         name : "MA Chidambaram Stadium",
         adjacent : [{name : "Government Museum",distance:12},{name : "Marina",distance:14},{name : "Sathyam Cinemas",distance:14},{name : "Music Academy",distance:4}]
     }
+}
+
+
+export const stationDistance = {
+    "Co" : {"US" : 8,"Sa" :16},
+    "US" : {"Sa" : 22,"Mu":16},
+    "Mu" : {"US": 16 ,"MA" : 4,"Ce" : 8},
+    "Ma" : {"MA": 14 ,"Ex": 18},
+    "Ex ": {"Ce" : 20 ,"MA" :18},
+    "Ce" : {"Ex ":20 ,"MA": 28},
+    "Go" : {"Sa" : 2 ,"MA" :12 ,"Ma": 12},
+    "Sa" : {"MA" :14 ,"Go" :2,"Co":22 },
+    "MA" : {"Go":12 ,"Ma":14 ,"Sa" :14 ,"Mu":4}
 }
 
 
