@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Card from './Card'
-import {cardPos} from './../helper/constants'
+import {cardPos,roadmap} from './../helper/constants'
+import {slope,pointsDistance,removePX} from './../helper/utils'
  class RightPanel extends Component {
 
     constructor(props) {
@@ -36,7 +37,8 @@ import {cardPos} from './../helper/constants'
         }
         const cartDesignRender = ()=>{
             let design = []
-            for(let each of cardPos){
+            let cardPosList = Object.values(cardPos)
+            for(let each of cardPosList){
                 design.push(
                     <Card style={{
                         ...stt,
@@ -50,30 +52,42 @@ import {cardPos} from './../helper/constants'
             return design
         }
 
+
+        const straightRoadGenerator = ()=>{
+            let road = []
+            let key_increment = 0
+            for(let each of roadmap){
+                // each ==> [key1,key2]
+                let point1 = cardPos[each[0]]
+                let point2 = cardPos[each[1]]
+                let p1_left = removePX(point1.left)
+                let p2_left = removePX(point2.left)
+                let p1_top = removePX(point1.top)
+                let p2_top = removePX(point2.top)
+                let calculated_width = pointsDistance(p1_left,p1_top,p2_left,p2_top)
+                let calculated_slope = slope(p1_left,p1_top,p2_left,p2_top)
+                key_increment += 321
+
+                console.log("Check",each,point1,point2,calculated_width)
+                road.push(
+                    <div className="line" key={"road_"+key_increment} style={{
+                        width: `${calculated_width}px`,
+                        top : p1_top,
+                        left : p1_left,
+                        transform: `rotate(${calculated_slope}deg)`
+                    }}/>
+                )
+            }
+            return road;
+        }
+
         return (
             <div className="rightBar">
 
                 {cartDesignRender()}
 
 
-                <div className="line" style={{
-                    width: "172px",
-                    top : "20%",
-                    left : "50%",
-                }}/>
-
-
-                <div className="line2" style={{
-                    width: "232px",
-                    top : "40%",
-                    left : "40%",
-                }}/>
-
-                <div className="line3" style={{
-                    width: "268px",
-                    top : "40%",
-                    left : "80%",
-                }}/>
+                {straightRoadGenerator()}
 
 
 

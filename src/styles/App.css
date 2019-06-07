@@ -32,8 +32,8 @@
     width: 60px;
     height: 40px;
     borderRadius: 5px;
-
-    /*transform: translate(-50%,-50%);*/
+    z-index: 2;
+    transform: translate(-50%,-50%);
 }
 
 .highLight {
@@ -46,7 +46,6 @@
     position: absolute;
     background-color: black;
     height : 2px;
-    transform: rotate(127deg) ;
     transform-origin: 0% 50%;
 }
 

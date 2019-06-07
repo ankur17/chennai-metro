@@ -45,16 +45,32 @@ export const stationDetails = {
 
 
 
-export const cardPos = [
-    {top : "250px", left : "400px",text:"US"},
-    {top : "250px", left : "800px",text:"Go"},
-    {top : "450px", left : "800px",text:"MA"},
-    {top : "450px", left : "400px",text:"Co"},
-    {top : "350px", left : "600px",text:"Sa"},
-    {top : "130px", left : "520px",text:"Mu"},
-    {top : "580px", left : "650px",text:"Ma"},
-    {top : "580px", left : "200px",text:"Ex"},
-    {top : "50px", left : "700px",text:"Ce"}
+export const cardPos = {
+    "US": {top: "250px", left: "400px", key: "US", text: "US"},
+    "Go": {top: "250px", left: "800px", key: "Go", text: "Go"},
+    "MA": {top: "450px", left: "800px", key: "MA", text: "MA"},
+    "Co": {top: "450px", left: "400px", key: "Co", text: "Co"},
+    "Sa": {top: "350px", left: "600px", key: "Sa", text: "Sa"},
+    "Mu": {top: "130px", left: "520px", key: "Mu", text: "Mu"},
+    "Ma": {top: "125px", left: "200px", key: "Ma", text: "Ma"},
+    "Ex": {top: "580px", left: "200px", key: "Ex", text: "Ex"},
+    "Ce": {top: "50px", left: "700px", key: "Ce", text: "Ce"}
+}
+
+// [key1 ,key2]
+export const roadmap= [
+    ["Co" ,"US"],
+    ["Co" ,"Sa"],
+    ["US" ,"Sa"],
+    ["Sa" ,"MA"],
+    ["US" ,"Mu"],
+    ["Sa" ,"Go"],
+    ["Mu" ,"MA"],
+    ["Go" ,"MA"],
+    ["Mu" ,"Ce"],
+    ["Go" ,"Ce"],
+    ["Mu" ,"Ma"],
+    ["Ma" ,"Ce"],
+    ["Ma" ,"Ex"],
+    ["Ce" ,"Ex"]
 ]
-
-
