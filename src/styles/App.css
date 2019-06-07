@@ -58,6 +58,14 @@
     width: 83%;
 }
 
+.SearchClearButton {
+    position: relative;
+    height : 7%;
+    top:43%;
+    width: 83%;
+    background-color: firebrick;
+}
+
 
 
 .card {
@@ -73,12 +81,16 @@
 }
 
 .card:hover {
-    opacity: #650b0a;
+    opacity: 0;
 
 }
 
 .highLight {
-    border-radius: 10px;
+    opacity: 0.5;
+}
+
+.nodeHighLight {
+    background-color: black;
 }
 
 

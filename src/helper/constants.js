@@ -4,6 +4,19 @@
 
 export const cards = ["Commutatus","USA consulate","Music Academy","Marina","Express Avenue Mall","Central Railway station","Government Museum","Sathyam Cinemas","MA Chidambaram Stadium"];
 
+
+export const keyMapper = {
+    "Commutatus": "Co",
+    "USA consulate": "US",
+    "Music Academy": "Mu",
+    "Marina": "Ma",
+    "Express Avenue Mall": "Ex",
+    "Central Railway station": "Ce",
+    "Government Museum": "Go",
+    "Sathyam Cinemas": "Sa",
+    "MA Chidambaram Stadium":"MA"
+}
+
 export const stationDetails = {
     Co : {
         name : "Commutatus",

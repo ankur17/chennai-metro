@@ -5,6 +5,22 @@ import {slope,pointsDistance,removePX} from './../helper/utils'
 import Modal from './Modal'
 
 
+const TYPE = {
+    EDGE : 'edge',
+    NODE : 'node'
+}
+
+const DEFAULT_CLASS = {
+    EDGE : 'line',
+    NODE : 'card'
+}
+
+const HIGHLIGHT = {
+    EDGE : 'highLight',
+    NODE : 'nodeHighLight'
+}
+
+
 class RightPanel extends Component {
 
     constructor(props) {
@@ -16,6 +32,7 @@ class RightPanel extends Component {
 
         this.click =  this.click.bind(this)
         this.modalHide =  this.modalHide.bind(this)
+        this.classNameResolver =  this.classNameResolver.bind(this)
     }
 
     click(card_key){
@@ -40,6 +57,34 @@ class RightPanel extends Component {
     componentWillUnmount(){
         clearInterval(this.timmer)
     }
+
+    classNameResolver(default_class,type, data){
+        let searchResult = this.props.searchResult || "";
+        if(searchResult.length>0){
+            switch(type) {
+                case TYPE.EDGE:
+                    // here key1 and key2 is in the data
+                    let key1 = data[0]
+                    let key2 = data[1]
+
+                    console.log("HMMM",key1,key2,searchResult)
+                    if( (searchResult==key1) || (searchResult==key2) ){
+                        return `${default_class} ${HIGHLIGHT.EDGE}`
+                    }
+                        break;
+                case TYPE.NODE:
+                    // here only key is in data
+                    if (searchResult==data){
+                        return `${default_class} ${HIGHLIGHT.NODE}`
+                    }
+                    break;
+            }
+        }
+
+        return default_class
+
+    }
+
     render() {
         // var ctrans = 'translate('+cleft+'px, '+ctop+'px)';
 
@@ -56,6 +101,10 @@ class RightPanel extends Component {
             let design = []
             let cardPosList = Object.values(cardPos)
             for(let each of cardPosList){
+                let class_name = this.classNameResolver(DEFAULT_CLASS.NODE,TYPE.NODE,each)
+                if(class_name!=DEFAULT_CLASS.NODE){
+                    console.log("POPOPOPOPOPOPOPOP",DEFAULT_CLASS.NODE,TYPE.NODE,each)
+                }
                 design.push(
                     <Card style={{
                             ...styles,
@@ -65,7 +114,7 @@ class RightPanel extends Component {
                           text={each.text}
                           key ={"key_"+each.key}
                           cardKey = {each.key}
-
+                          class_name={class_name}
                     />
                 )
             }
@@ -88,8 +137,14 @@ class RightPanel extends Component {
                 let calculated_slope = slope(p1_left,p1_top,p2_left,p2_top)
                 key_increment += 321
 
+                let class_name = this.classNameResolver(DEFAULT_CLASS.EDGE,TYPE.EDGE,each)
+
+                // if(class_name==DEFAULT_CLASS.EDGE){
+                //     console.log("JOJOJOJOJOJOJOJOJ",DEFAULT_CLASS.NODE,TYPE.NODE,each)
+                // }
+
                 road.push(
-                    <div className="line" key={"road_"+key_increment} style={{
+                    <div className={class_name} key={"road_"+key_increment} style={{
                         width: `${calculated_width}px`,
                         top : p1_top,
                         left : p1_left,

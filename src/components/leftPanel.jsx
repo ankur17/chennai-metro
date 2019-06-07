@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-import {cards} from './../helper/constants'
+import {cards,keyMapper} from './../helper/constants'
 
 class LeftPanel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            search_selection : ""
+            search_selection : "",
+            isFinalised : false
         }
-        this.loc_ref = null
+
         this.selectionChanged = this.selectionChanged.bind(this)
         this.optionFinalised = this.optionFinalised.bind(this)
+        this.clearOption = this.clearOption.bind(this)
     }
 
     selectionChanged(event){
@@ -21,9 +23,27 @@ class LeftPanel extends Component {
 
     optionFinalised(){
         // pass it to the parent
+        this.setState({
+            isFinalised: true
+            // },()=>this.props.setSearchResult(this.state.search_selection))
+        })
 
-        this.props.setSearchResult(this.state.search_selection)
+        let loc_key = keyMapper[this.state.search_selection]
 
+        this.props.setSearchResult(loc_key)
+
+
+    }
+
+    clearOption(){
+        this.setState({
+            search_selection : "",
+            isFinalised : false
+        // },()=>this.props.setSearchResult(""))
+
+        })
+
+        this.props.setSearchResult("")
     }
 
     render() {
@@ -38,11 +58,11 @@ class LeftPanel extends Component {
 
         return (
             <div className="leftBar">
-                <input list="locations" name="browser" className="searchBar" placeholder="Enter Location" ref={(ref)=>this.loc_ref=ref} onChange={this.selectionChanged}/>
+                <input list="locations" name="browser" className="searchBar" placeholder="Enter Location"  onChange={this.selectionChanged}/>
                     <datalist id="locations" onChange={(event)=>{console.log(event)}}  >
                         {cardOptionListRender()}
                     </datalist>
-                <button type="button" className="SearchButton" onClick={this.optionFinalised}>Find</button>
+                {(!this.state.isFinalised) ? <button type="button" className="SearchButton" onClick={this.optionFinalised}>Find</button> : <button type="button" className="SearchClearButton" onClick={this.clearOption}>Clear</button>}
 
             </div>
         )
