@@ -27,9 +27,9 @@ import Card from './Card'
             backgroundColor: "crimson",
             position: "absolute",
             width: "60px",
-            height: "7%",
+            height: "40px",
             borderRadius: "5px",
-            zIndex:2
+
         }
 
 
@@ -40,77 +40,84 @@ import Card from './Card'
 
                 <Card style={{
                     ...default_s,
-                    top : "40%",
-                    left : "40%"
+                    top : "250px",
+                    left : "400px"
                 }}text="US" onClick={this.click.bind(this)}/>
 
 
                 <Card style={{
                     ...default_s,
-                    top : "40%",
-                    left : "80%"
+                    top : "250px",
+                    left : "800px"
                 }} text="Go"/>
 
 
                 <Card style={{
                     ...default_s,
-                    top : "70%",
-                    left : "80%"
+                    top : "450px",
+                    left: "800px"
                 }} text="MA"/>
 
                 <Card style={{
                     ...default_s,
-                    top : "70%",
-                    left : "40%"
+                    top : "450px",
+                    left : "400px"
                 }} text="Co"/>
 
                 <Card style={{
                     ...default_s,
-                    top : "50%",
-                    left : "60%"
+                    top : "350px",
+                    left : "600px"
                 }} text="Sa"/>
 
 
                 <Card style={{
                     ...default_s,
-                    top : "20%",
-                    left : "50%"
+                    top : "130px",
+                    left : "520px"
                 }} text="Mu"/>
 
-                <Card style={{
-                    ...default_s,
-                    top : "30%",
-                    left : "70%"
-                }} text="Go"/>
-
 
                 <Card style={{
                     ...default_s,
-                    top : "90%",
-                    left : "70%"
+                    top : "580px",
+                    left : "650px"
                 }} text="Ma"/>
 
 
                 <Card style={{
                     ...default_s,
-                    top : "90%",
-                    left : "20%"
+                    top : "580px",
+                    left : "200px"
                 }} text="Ex"/>
 
 
                 <Card style={{
                     ...default_s,
-                    top : "15%",
-                    left : "85%"
+                    top : "50px",
+                    left : "700px"
                 }}  ref={(ref)=>{this.reff = ref}}
                       text="Ce"/>
 
 
 
                 <div className="line" style={{
-                    width: "175px",
+                    width: "172px",
                     top : "20%",
                     left : "50%",
+                }}/>
+
+
+                <div className="line2" style={{
+                    width: "232px",
+                    top : "40%",
+                    left : "40%",
+                }}/>
+
+                <div className="line3" style={{
+                    width: "268px",
+                    top : "40%",
+                    left : "80%",
                 }}/>
 
 
